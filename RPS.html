@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+        
+      }
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+      .lastResult {
+        color: red;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+      <h1>Rock Paper Scissors</h1>
+
+      <p>This is a simple rock paper scissors game against an AI that wants to destory the world, GL :)</p>
+
+<div class="form">
+
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="lastResult"></p>
+  <p class="lowOrHi"></p>
+</div>
+
+</body>
+       <script>
+            //const weapon = document.querySelector('.Weapon');
+            //const confrm = document.querySelector('.Conf');
+            const score = document.querySelector('.guesses');
+            let wins = 0;
+            let loses = 0;
+            let result;
+
+
+            function Play(){
+                
+                let random_num = Math.floor(Math.random()*3);
+                //0=rock 1=paper 2=scissors
+                console.log(random_num);
+                return random_num;
+            }
+            function play_round(player, comp){
+                let str_fix = player.toLowerCase();
+                if((str_fix ==="rock" && comp == 2) || (str_fix ==="paper" && comp == 0) || (str_fix ==="scissors" && comp == 1)) {
+                    return 1;
+                }
+                else if((str_fix ==="rock" && comp == 0) || (str_fix ==="paper" && comp == 1) || (str_fix ==="scissors" && comp == 2)) {
+                    return 0;
+                }
+                else {
+                    
+                    return -1;
+                }
+            }
+            while(wins<5 && loses<5){
+                let weapon = prompt("Choose Your Weapon");
+                
+                result = play_round(weapon, Play());
+                if(result == 1){
+                    wins++;
+                    console.log("You won this round");
+                }
+                else if(result == -1){
+                    loses++;
+                    console.log("You lost!!!");
+                }
+                else console.log("Draw, DO BETTER");
+
+                score.textContent= "You: " +wins + " Vs. Advanced AI: " +loses;
+
+            }
+            if(wins>loses) console.log("You saved us!");
+            else console.log("You failed humanity");
+        </script>
+</html>
+
